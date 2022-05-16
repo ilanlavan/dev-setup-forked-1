@@ -136,26 +136,26 @@ brew install heroku/brew/heroku
 heroku update
 
 # Core casks
-brew cask install --appdir="/Applications" alfred
-brew cask install --appdir="~/Applications" iterm2
-brew cask install --appdir="~/Applications" java
-brew cask install --appdir="~/Applications" xquartz
+brew install --appdir="/Applications" alfred --cask
+brew install --appdir="~/Applications" iterm2 --cask
+brew install --appdir="~/Applications" java --cask
+brew install --appdir="~/Applications" xquartz --cask
 
 # Development tool casks
-brew cask install --appdir="/Applications" sublime-text
-brew cask install --appdir="/Applications" atom
-brew cask install --appdir="/Applications" virtualbox
-brew cask install --appdir="/Applications" vagrant
-brew cask install --appdir="/Applications" macdown
+brew install --appdir="/Applications" sublime-text --cask
+brew install --appdir="/Applications" atom --cask
+brew install --appdir="/Applications" virtualbox --cask
+brew install --appdir="/Applications" vagrant --cask
+brew install --appdir="/Applications" macdown --cask
 
 # Misc casks
-brew cask install --appdir="/Applications" google-chrome
-brew cask install --appdir="/Applications" firefox
-brew cask install --appdir="/Applications" skype
-brew cask install --appdir="/Applications" slack
-brew cask install --appdir="/Applications" dropbox
-brew cask install --appdir="/Applications" evernote
-brew cask install --appdir="/Applications" 1password
+brew install --appdir="/Applications" google-chrome --cask
+brew install --appdir="/Applications" firefox --cask
+brew install --appdir="/Applications" skype --cask
+brew install --appdir="/Applications" slack --cask
+brew install --appdir="/Applications" dropbox --cask
+brew install --appdir="/Applications" evernote --cask
+brew install --appdir="/Applications" 1password --cask
 #brew cask install --appdir="/Applications" gimp
 #brew cask install --appdir="/Applications" inkscape
 
@@ -167,7 +167,7 @@ brew install docker
 brew install boot2docker
 
 # Install developer friendly quick look plugins; see https://github.com/sindresorhus/quick-look-plugins
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzip qlimagesize webpquicklook suspicious-package quicklookase qlvideo
+brew install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzip qlimagesize webpquicklook suspicious-package quicklookase qlvideo --cask
 
 # Remove outdated versions from the cellar.
 brew cleanup
