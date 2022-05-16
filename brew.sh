@@ -17,7 +17,7 @@ fi
 
 #adding Homebrew to your PATH:
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
-eval "$(/opt/homeberw/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -67,7 +67,7 @@ grep -q "$LINE" ~/.extra || echo "$LINE" >> ~/.extra
 
 # Install more recent versions of some OS X tools.
 brew install vim --override-system-vi
-brew install homebrew/php/php55 --with-gmp
+brew install homebrew/php/php55-gmp
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -110,7 +110,7 @@ brew install git-lfs
 brew install git-flow
 brew install git-extras
 brew install hub
-brew install imagemagick --with-webp
+#brew install imagemagick --with-webp
 brew install lua
 brew install lynx
 brew install p7zip
