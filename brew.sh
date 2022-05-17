@@ -140,7 +140,7 @@ heroku update
 # Core casks
 brew install --appdir="/Applications" alfred --cask
 brew install --appdir="~/Applications" iterm2 --cask
-brew install --appdir="~/Applications" java --cask
+brew cask install --appdir="~/Applications" java
 brew install --appdir="~/Applications" xquartz --cask
 
 # Development tool casks
