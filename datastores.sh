@@ -30,8 +30,6 @@ brew install redis
 brew install elasticsearch
 
 # Install mysql workbench
-# Install Cask
-#brew install caskroom/cask/brew-cask
 brew install --appdir="/Applications" mysqlworkbench --cask
 
 # Remove outdated versions from the cellar.
