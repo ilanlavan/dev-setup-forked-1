@@ -23,10 +23,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 
 brew install --appdir="~/Applications" java
-brew install --appdir="~/Applications" intellij-idea-ce --cask
-brew install --appdir="~/Applications" android-studio --cask
+#brew install --appdir="~/Applications" intellij-idea-ce --cask
+#brew install --appdir="~/Applications" android-studio --cask
 
-brew install android-sdk
+#brew install android-sdk
 
 # Remove outdated versions from the cellar.
 brew cleanup
