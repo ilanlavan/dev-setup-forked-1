@@ -66,8 +66,9 @@ LINE='eval "$(rbenv init -)"'
 grep -q "$LINE" ~/.extra || echo "$LINE" >> ~/.extra
 
 # Install more recent versions of some OS X tools.
-brew install vim --override-system-vi
-brew install homebrew/php/php55-gmp
+brew install vim
+brew link vim
+brew install php@5.6
 
 # Install font tools.
 brew tap bramstein/webfonttools
