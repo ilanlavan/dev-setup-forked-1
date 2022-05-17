@@ -22,9 +22,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Make sure we’re using the latest Homebrew.
 brew update
 
-brew cask install --appdir="~/Applications" java
-brew cask install --appdir="~/Applications" intellij-idea-ce
-brew cask install --appdir="~/Applications" android-studio
+brew install --appdir="~/Applications" java --cask
+brew install --appdir="~/Applications" intellij-idea-ce --cask
+brew install --appdir="~/Applications" android-studio --cask
 
 brew install android-sdk
 
