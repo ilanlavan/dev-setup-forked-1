@@ -79,9 +79,9 @@ echo "Installing volta..."
 
 echo "Generating SSH key..."
 echo "press enter for all questions..."
-ssh-keygen -t rsa -b 2048 -C 'ilan.lavan@skai.com'
+ssh-keygen -t rsa -b 2048 -C 'search@skai.io'
 echo "Goto your github account and paste the following code under Settings-> SSH and GPG keys -> New SSH key..."
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/skai-io.pub
 
 #Clone search
 echo "Clone search..."
