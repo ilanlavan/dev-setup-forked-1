@@ -78,8 +78,10 @@ echo "Installing volta..."
 #export PATH=$VOLTA_HOME/bin:$PATH
 
 echo "Generating SSH key..."
+echo "press enter for all questions..."
 ssh-keygen -t rsa -b 2048 -C 'ilan.lavan@skai.com'
-
+echo "Goto your github account and paste the following code under Settings-> SSH and GPG keys -> New SSH key..."
+cat ~/.ssh/id_rsa.pub
 
 #Clone search
 echo "Clone search..."
