@@ -15,9 +15,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 #fi
 
-##adding Homebrew to your PATH:
-#echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
-#eval "$(/opt/homebrew/bin/brew shellenv)"
+#adding Homebrew to your PATH:
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ## Make sure we’re using the latest Homebrew.
 #brew update
