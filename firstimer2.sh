@@ -20,7 +20,7 @@ echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ## Make sure we’re using the latest Homebrew.
-#brew update
+#brew updatecd
 
 ## Upgrade any already-installed formulae.
 #brew upgrade --formula
@@ -83,8 +83,9 @@ brew install gradle
 #cd ~/dev
 #git clone git@github.com:kenshoo/search.git
 
-
-
+#Clone search
+echo "Installing vault-cli..."
+brew install vault-cli
 
 
 
