@@ -28,17 +28,17 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ## install zsh
 echo "Installing zsh..."
 brew install zsh
-echo "parse_git_branch() { git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p' } COLOR_DEF=$'\e[0m' COLOR_USR=$'\e[38;5;243m' COLOR_DIR=$'\e[38;5;197m' COLOR_GIT=$'\e[38;5;39m' NEWLINE=$'\n' setopt PROMPT_SUBST export PROMPT='${COLOR_USR}%n@%M ${COLOR_DIR}%d ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}%% '" >> /Users/$USER/.zshrc
+echo " parse_git_branch() { git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p' } COLOR_DEF=\$'\e[0m' COLOR_USR=\$'\e[38;5;243m' COLOR_DIR=\$'\e[38;5;197m' COLOR_GIT=\$'\e[38;5;39m' NEWLINE=\$'\n' setopt PROMPT_SUBST export PROMPT='\${COLOR_USR}%n@%M \${COLOR_DIR}%d \${COLOR_GIT}\$(parse_git_branch)\${COLOR_DEF}\${NEWLINE}%% '" >> ~/.zshrc
 source ~/.zshrc
 
 #install java
 echo "Installing java..."
-echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.bash_profile
-brew install java
+#echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.bash_profile
+#brew install java
 
 # install tomcat
 echo "Installing tomcat..."
-brew install tomcat@9
+#brew install tomcat@9
 
 ## install docker
 #echo "Installing docker..."
