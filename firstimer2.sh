@@ -27,9 +27,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ## install zsh
 echo "Installing zsh..."
-brew install zsh
-echo " parse_git_branch() { git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p' } COLOR_DEF=\$'\e[0m' COLOR_USR=\$'\e[38;5;243m' COLOR_DIR=\$'\e[38;5;197m' COLOR_GIT=\$'\e[38;5;39m' NEWLINE=\$'\n' setopt PROMPT_SUBST export PROMPT='\${COLOR_USR}%n@%M \${COLOR_DIR}%d \${COLOR_GIT}\$(parse_git_branch)\${COLOR_DEF}\${NEWLINE}%% '" >> ~/.zshrc
-source ~/.zshrc
+#brew install zsh
+#echo " parse_git_branch() { git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p' } COLOR_DEF=\$'\e[0m' COLOR_USR=\$'\e[38;5;243m' COLOR_DIR=\$'\e[38;5;197m' COLOR_GIT=\$'\e[38;5;39m' NEWLINE=\$'\n' setopt PROMPT_SUBST export PROMPT='\${COLOR_USR}%n@%M \${COLOR_DIR}%d \${COLOR_GIT}\$(parse_git_branch)\${COLOR_DEF}\${NEWLINE}%% '" >> ~/.zshrc
+#source ~/.zshrc
 
 #install java
 echo "Installing java..."
@@ -82,6 +82,10 @@ echo "press enter for all questions..."
 ssh-keygen -t rsa -b 2048 -C 'search@skai.io'
 echo "Goto your github account and paste the following code under Settings-> SSH and GPG keys -> New SSH key..."
 cat ~/.ssh/skai-io.pub
+read -p "Press enter to continue"
+echo "Now go to the same place and authorize the key you just generated, (Settings-> SSH and GPG keys)"
+
+read -p "Press enter to continue"
 
 #Clone search
 echo "Clone search..."
