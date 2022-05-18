@@ -70,7 +70,7 @@ brew install gradle
 echo "Installing hashicorp..."
 brew install hashicorp/tap/vault
 cd ~
-vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=<your username>
+vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=$USER
 
 #Install volta
 echo "Installing volta..."
