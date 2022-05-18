@@ -10,7 +10,7 @@ function runDots() {
     # Run sections based on command line arguments
     for ARG in "$@"
     do
-    if [ $ARG == "firstimer" ] || [ $ARG == "all" ]; then
+        if [ $ARG == "firstimer" ] || [ $ARG == "all" ]; then
             # Run the firstimer.sh Script
             echo ""
             echo "------------------------------"
@@ -18,6 +18,15 @@ function runDots() {
             echo "------------------------------"
             echo ""
             ./firstimer.sh
+        fi
+        if [ $ARG == "firstimer2" ] || [ $ARG == "all" ]; then
+            # Run the firstimer.sh Script
+            echo ""
+            echo "------------------------------"
+            echo "first timer2 line tools"
+            echo "------------------------------"
+            echo ""
+            ./firstimer2.sh
         fi
         if [ $ARG == "bootstrap" ] || [ $ARG == "all" ]; then
             echo ""
