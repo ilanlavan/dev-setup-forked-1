@@ -55,7 +55,7 @@ echo "Installing tomcat..."
 
 # install gradle
 echo "Installing gradle..."
-brew install gradle
+#brew install gradle
 #get init.gradle and place it in ~/.gradle
 
 
@@ -68,14 +68,18 @@ brew install gradle
 
 #Configure vault
 echo "Installing hashicorp..."
-brew install hashicorp/tap/vault
-cd ~
-vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=$USER
+#brew install hashicorp/tap/vault
+#cd ~
+#vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=$USER
 
 #Install volta
 echo "Installing volta..."
-brew install volta
-export PATH=$VOLTA_HOME/bin:$PATH
+#brew install volta
+#export PATH=$VOLTA_HOME/bin:$PATH
+
+echo "Generating SSH key..."
+ssh-keygen -t rsa -b 2048 -C 'ilan.lavan@skai.com'
+
 
 #Clone search
 echo "Clone search..."
