@@ -66,27 +66,26 @@ brew install gradle
 #add ssh key 
 #https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-##Configure vault
-#echo "Installing hashicorp..."
-#brew install hashicorp/tap/vault
-#cd ~
-#vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=<your username>
+#Configure vault
+echo "Installing hashicorp..."
+brew install hashicorp/tap/vault
+cd ~
+vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=<your username>
 
-##Install volta
-#echo "Installing volta..."
-#brew install volta
-#export PATH=$VOLTA_HOME/bin:$PATH
-
-##Clone search
-#echo "Clone search..."
-#mkdir ~/dev
-#cd ~/dev
-#git clone git@github.com:kenshoo/search.git
+#Install volta
+echo "Installing volta..."
+brew install volta
+export PATH=$VOLTA_HOME/bin:$PATH
 
 #Clone search
-echo "Installing vault-cli..."
-brew install vault-cli
+echo "Clone search..."
+mkdir ~/dev
+cd ~/dev
+git clone git@github.com:kenshoo/search.git
 
+#Clone search
+#echo "Installing vault-cli..."
+#brew install vault-cli
 
 
 # Remove outdated versions from the cellar.
