@@ -43,13 +43,17 @@ brew install tomcat@9
 ## install docker
 echo "Installing docker..."
 brew install --cask docker
-open /Applications/Docker.app
+
 
 ##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
   mkdir -p ~/.docker/cli-plugins
-  ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+  ln -sfn /opt/homebrew/opt/docker-compose/bin/docker compose ~/.docker/cli-plugins/docker-compose
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
+
+sed 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
+
+#open /Applications/Docker.app
 
 
 ## Jfrog logindocker - need to get credentials from init.gradle
