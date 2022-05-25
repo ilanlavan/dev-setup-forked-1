@@ -11,7 +11,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Check for Homebrew,
 # Install if we don't have it
 if test ! $(which brew); then
+	echo "*********************************************************"
   echo "Installing homebrew..."
+  echo "*********************************************************"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
@@ -26,21 +28,31 @@ brew update
 brew upgrade --formula
 
 # install zsh
+echo "*********************************************************"
 echo "Installing zsh..."
+echo "*********************************************************"
 brew install zsh
 echo " parse_git_branch() { git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p' } COLOR_DEF=\$'\e[0m' COLOR_USR=\$'\e[38;5;243m' COLOR_DIR=\$'\e[38;5;197m' COLOR_GIT=\$'\e[38;5;39m' NEWLINE=\$'\n' setopt PROMPT_SUBST export PROMPT='\${COLOR_USR}%n@%M \${COLOR_DIR}%d \${COLOR_GIT}\$(parse_git_branch)\${COLOR_DEF}\${NEWLINE}%% '" >> ~/.zshrc
 source ~/.zshrc
 
 #install java
+echo "*********************************************************"
 echo "Installing java..."
+echo "*********************************************************"
 echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.bash_profile
 brew install java
 
 # install tomcat
+echo "*********************************************************"
 echo "Installing tomcat..."
+echo "*********************************************************"
 brew install tomcat@9
 
 #set timezone
+echo "*********************************************************"
+echo "Setting timezone"
+echo "*********************************************************"
+
 timezonemessage=$(sudo systemsetup -gettimezone)
 echo $timezonemessage
 prefix="Time Zone: "
@@ -52,14 +64,22 @@ echo $timezone > ~/etc/timezone
 
 
 ## install docker
+echo "*********************************************************"
 echo "Installing docker..."
+echo "*********************************************************"
+brew uninstall --cask docker
 brew install --cask docker
 
+brew uninstall docker-compose
+brew install docker-compose
 
 ##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
-  mkdir -p ~/.docker/cli-plugins
-  ln -sfn /opt/homebrew/opt/docker-compose/bin/docker compose ~/.docker/cli-plugins/docker-compose
+  #mkdir -p ~/.docker/cli-plugins
+  #ln -sfn /opt/homebrew/opt/docker-compose/bin/docker compose ~/.docker/cli-plugins/docker-compose
 
+echo "*********************************************************"
+echo "disable compose v2 on docker"
+echo "*********************************************************"
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
 sed -i 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
@@ -77,26 +97,34 @@ sed -i 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library
 #aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 668139184987.dkr.ecr.us-east-1.amazonaws.com
 
 # install gradle
+echo "*********************************************************"
 echo "Installing gradle..."
+echo "*********************************************************"
 brew install gradle
 #get init.gradle and place it in ~/.gradle
 
 
 # install git
+echo "*********************************************************"
 echo "Installing git..."
+echo "*********************************************************"
 brew install git
 
 #add ssh key
 #https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 #Configure vault
+echo "*********************************************************"
 echo "Installing hashicorp..."
+echo "*********************************************************"
 #brew install hashicorp/tap/vault
 #cd ~
 #vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=$USER
 
 #Install volta
+echo "*********************************************************"
 echo "Installing volta..."
+echo "*********************************************************"
 #brew install volta
 #export PATH=$VOLTA_HOME/bin:$PATH
 
@@ -124,7 +152,9 @@ echo ""
 read -p "Press enter to continue"
 
 #Clone search
+echo "*********************************************************"
 echo "Clone search..."
+echo "*********************************************************"
 mkdir ~/dev
 cd ~/dev
 git clone git@github.com:kenshoo/search.git
