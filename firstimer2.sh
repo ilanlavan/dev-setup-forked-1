@@ -45,11 +45,13 @@ echo "Installing docker..."
 brew install --cask docker
 open /Applications/Docker.app
 
-brew install docker-compose
+##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
+  mkdir -p ~/.docker/cli-plugins
+  ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
-var timezone = sudo systemsetup -gettimezone
+timezone = sudo systemsetup -gettimezone
 sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
 echo $timezone >> ~/etc/timezone
 
@@ -92,12 +94,12 @@ echo "**************************************************************************
 echo "** press enter for all questions...                                                                        **"
 echo "**                                                                                                         **"
 ssh-keygen -t rsa -b 2048 -C 'search@skai1111.io'
-echo "**Goto your github account and paste the following code under Settings-> SSH and GPG keys -> New SSH key...**"
-echo "**                                                                                                         **"
 echo "*************************************************************************************************************"
-echo "**                                                                                                         **"
-echo "**                                                                                                         **"
-cat ~/.ssh/skai1111-io.pub
+echo "**Goto your github account and paste the following code under Settings-> SSH and GPG keys -> New SSH key...**"
+echo "*************************************************************************************************************"
+cat ~/.ssh/id_rsa.pub
+
+echo "*************************************************************************************************************"
 read -p "Press enter to continue"
 echo "*************************************************************************************************************"
 echo "**                                                                                                         **"
