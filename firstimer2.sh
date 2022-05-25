@@ -71,7 +71,7 @@ brew uninstall --cask docker
 brew install --cask docker
 
 brew uninstall docker-compose
-brew install docker-compose
+#brew install docker-compose
 
 ##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
   #mkdir -p ~/.docker/cli-plugins
