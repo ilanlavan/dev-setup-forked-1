@@ -28,6 +28,15 @@ function runDots() {
             echo ""
             ./firstimer2.sh
         fi
+        if [ $ARG == "firstimer3" ] || [ $ARG == "all" ]; then
+                    # Run the firstimer3.sh Script
+                    echo ""
+                    echo "------------------------------"
+                    echo "first timer3 line tools"
+                    echo "------------------------------"
+                    echo ""
+                    ./firstimer3.sh
+                fi
         if [ $ARG == "bootstrap" ] || [ $ARG == "all" ]; then
             echo ""
             echo "------------------------------"
