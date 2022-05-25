@@ -9,41 +9,6 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
-if [ 1 -eq 0 ]; then
-
-# Check for Homebrew,
-# Install if we don't have it
-if test ! $(which brew); then
-  echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-#adding Homebrew to your PATH:
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-## Make sure we’re using the latest Homebrew.
-brew update
-
-## Upgrade any already-installed formulae.
-brew upgrade --formula
-
-# install zsh
-echo "Installing zsh..."
-brew install zsh
-echo " parse_git_branch() { git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p' } COLOR_DEF=\$'\e[0m' COLOR_USR=\$'\e[38;5;243m' COLOR_DIR=\$'\e[38;5;197m' COLOR_GIT=\$'\e[38;5;39m' NEWLINE=\$'\n' setopt PROMPT_SUBST export PROMPT='\${COLOR_USR}%n@%M \${COLOR_DIR}%d \${COLOR_GIT}\$(parse_git_branch)\${COLOR_DEF}\${NEWLINE}%% '" >> ~/.zshrc
-source ~/.zshrc
-
-#install java
-echo "Installing java..."
-echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.bash_profile
-brew install java
-
-# install tomcat
-echo "Installing tomcat..."
-brew install tomcat@9
-
-fi
 ## install docker
 echo "Installing docker..."
 brew install --cask docker
