@@ -51,9 +51,6 @@ open /Applications/Docker.app
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
-timezone = sudo systemsetup -gettimezone
-sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
-echo $timezone >> ~/etc/timezone
 
 ## Jfrog logindocker - need to get credentials from init.gradle
 #docker login -u <USER> -p <PASSWORD> kenshoo-docker.jfrog.io
@@ -87,6 +84,17 @@ echo "Installing hashicorp..."
 echo "Installing volta..."
 #brew install volta
 #export PATH=$VOLTA_HOME/bin:$PATH
+
+
+timezonemessage=$(sudo systemsetup -gettimezone)
+echo $timezonemessage
+prefix="Time Zone: "
+timezone=${timezonemessage#"$prefix"}
+echo sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
+sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
+mkdir ~/etc
+echo $timezone > ~/etc/timezone
+
 
 echo "Generating SSH key..."
 echo "*************************************************************************************************************"
