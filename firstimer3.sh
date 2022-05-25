@@ -21,7 +21,7 @@ echo "Installing docker..."
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
 m ~/etc/localtime
-timezone=$(sudo systemsetup -getnetworktimeserver)
+timezone=$(sudo systemsetup -gettimezone)
 echo $timezone
 sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
 echo $timezone >> ~/etc/timezone
