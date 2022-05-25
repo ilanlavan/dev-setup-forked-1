@@ -8,6 +8,9 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+
+if [ 1 -eq 0 ]; then
+
 # Check for Homebrew,
 # Install if we don't have it
 if test ! $(which brew); then
@@ -40,16 +43,19 @@ brew install java
 echo "Installing tomcat..."
 brew install tomcat@9
 
+fi
 ## install docker
 echo "Installing docker..."
 brew install --cask docker
 open /Applications/Docker.app
 
-brew install docker-compose
+##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
+  mkdir -p ~/.docker/cli-plugins
+  ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
-var timezone = sudo systemsetup -gettimezone
+timezone = sudo systemsetup -gettimezone
 sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
 echo $timezone >> ~/etc/timezone
 
