@@ -40,6 +40,17 @@ brew install java
 echo "Installing tomcat..."
 brew install tomcat@9
 
+#set timezone
+timezonemessage=$(sudo systemsetup -gettimezone)
+echo $timezonemessage
+prefix="Time Zone: "
+timezone=${timezonemessage#"$prefix"}
+echo sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
+sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
+mkdir ~/etc
+echo $timezone > ~/etc/timezone
+
+
 ## install docker
 echo "Installing docker..."
 brew install --cask docker
@@ -88,16 +99,6 @@ echo "Installing hashicorp..."
 echo "Installing volta..."
 #brew install volta
 #export PATH=$VOLTA_HOME/bin:$PATH
-
-
-timezonemessage=$(sudo systemsetup -gettimezone)
-echo $timezonemessage
-prefix="Time Zone: "
-timezone=${timezonemessage#"$prefix"}
-echo sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
-sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
-mkdir ~/etc
-echo $timezone > ~/etc/timezone
 
 
 echo "Generating SSH key..."
