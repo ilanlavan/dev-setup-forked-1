@@ -23,7 +23,10 @@ echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 rm ~/etc/localtime
 timezone=$(sudo systemsetup -gettimezone)
 echo $timezone
-echo sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
+prefix = "Time Zone: "
+timezone2 = ${timezone#"prefix"}
+
+echo sudo ln -sf /usr/share/zoneinfo/$timezone2/etc/localtime
 echo $timezone >> ~/etc/timezone
 
 ## Jfrog logindocker - need to get credentials from init.gradle
