@@ -35,13 +35,13 @@ echo $timezone >> ~/etc/timezone
 
 # install gradle
 echo "Installing gradle..."
-brew install gradle
+#brew install gradle
 #get init.gradle and place it in ~/.gradle
 
 
 # install git
 echo "Installing git..."
-brew install git
+#brew install git
 
 #add ssh key
 #https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
@@ -68,7 +68,7 @@ echo "**                                                                        
 echo "*************************************************************************************************************"
 echo "**                                                                                                         **"
 echo "**                                                                                                         **"
-cat ~/.ssh/skai1111-io.pub
+cat ~/.ssh/id_rsa.pub
 read -p "Press enter to continue"
 echo "*************************************************************************************************************"
 echo "**                                                                                                         **"
