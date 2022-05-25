@@ -27,6 +27,7 @@ prefix="Time Zone: "
 subtimezone=${timezone#"$prefix"}
 echo sudo ln -sf /usr/share/zoneinfo/$subtimezone/etc/localtime
 sudo ln -sf /usr/share/zoneinfo/$subtimezone/etc/localtime
+mkdir ~/etc
 echo $timezone >> ~/etc/timezone
 
 
