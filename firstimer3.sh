@@ -18,7 +18,7 @@ echo "Installing docker..."
   mkdir -p ~/.docker/cli-plugins
   ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 
-echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
+echo "{\"composeV2\": \"disabled\"}" > ~/.docker/features.json
 
 rm ~/etc/localtime
 timezone=$(sudo systemsetup -gettimezone)
@@ -28,7 +28,7 @@ subtimezone=${timezone#"$prefix"}
 echo sudo ln -sf /usr/share/zoneinfo/$subtimezone/etc/localtime
 sudo ln -sf /usr/share/zoneinfo/$subtimezone/etc/localtime
 mkdir ~/etc
-echo subtimezone >> ~/etc/timezone
+echo $subtimezone > ~/etc/timezone
 
 
 ## Jfrog logindocker - need to get credentials from init.gradle
