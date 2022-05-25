@@ -62,7 +62,7 @@ brew install --cask docker
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
-sed 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
+sed -i 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
 
 #open /Applications/Docker.app
 
