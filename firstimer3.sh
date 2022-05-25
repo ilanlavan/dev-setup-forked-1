@@ -29,6 +29,7 @@ echo sudo ln -sf /usr/share/zoneinfo/$subtimezone/etc/localtime
 sudo ln -sf /usr/share/zoneinfo/$subtimezone/etc/localtime
 echo $timezone >> ~/etc/timezone
 
+
 ## Jfrog logindocker - need to get credentials from init.gradle
 #docker login -u <USER> -p <PASSWORD> kenshoo-docker.jfrog.io
 
