@@ -11,8 +11,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ## install docker
 echo "Installing docker..."
-#brew install --cask docker
-#open /Applications/Docker.app
+brew install --cask docker
+open /Applications/Docker.app
 
 ##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
   mkdir -p ~/.docker/cli-plugins
