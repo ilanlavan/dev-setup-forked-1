@@ -20,8 +20,8 @@ echo "Installing docker..."
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 rm ~/etc/localtime
-timezone=systemsetup -gettimezone
-sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
+#timezone=systemsetup -gettimezone
+sudo ln -sf /usr/share/zoneinfo/$(sudo systemsetup -getnetworktimeserver)/etc/localtime
 echo $timezone >> ~/etc/timezone
 
 ## Jfrog logindocker - need to get credentials from init.gradle
