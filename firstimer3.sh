@@ -19,8 +19,8 @@ echo "Installing docker..."
   ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
-
-timezone = sudo systemsetup -gettimezone
+sudo rm ~/etc/localtime
+timezone=systemsetup -gettimezone
 sudo ln -sf /usr/share/zoneinfo/$timezone/etc/localtime
 echo $timezone >> ~/etc/timezone
 
