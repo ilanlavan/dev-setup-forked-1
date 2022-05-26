@@ -67,15 +67,11 @@ echo $timezone > ~/etc/timezone
 echo "*********************************************************"
 echo "Installing docker..."
 echo "*********************************************************"
-brew uninstall --cask docker
 brew install --cask docker
 
-brew uninstall docker-compose
-#brew install docker-compose
-
 ##Compose is now a Docker plugin. For Docker to find this plugin, symlink it:
-  #mkdir -p ~/.docker/cli-plugins
-  #ln -sfn /opt/homebrew/opt/docker-compose/bin/docker compose ~/.docker/cli-plugins/docker-compose
+  mkdir -p ~/.docker/cli-plugins
+  ln -sfn /opt/homebrew/opt/docker-compose/bin/docker compose ~/.docker/cli-plugins/docker-compose
 
 echo "*********************************************************"
 echo "disable compose v2 on docker"
@@ -84,7 +80,7 @@ echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
 sed -i 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
 
-#open /Applications/Docker.app
+open /Applications/Docker.app
 
 
 ## Jfrog logindocker - need to get credentials from init.gradle
@@ -159,10 +155,27 @@ mkdir ~/dev
 cd ~/dev
 git clone git@github.com:kenshoo/search.git
 
-#Clone search
-#echo "Installing vault-cli..."
-#brew install vault-cli
+echo "*********************************************************"
+echo "Prepare KS env"
+echo "*********************************************************"
+#download keystore and rename
+#download server.xml, apply changes and locate here /opt/homebrew/Cellar
 
+cd ~dev/search/kenshoo/java
+./gradlew clean cleanIdea idea
+
+#Edit “performanceAggregation.properties” file:
+#file location - kenshoo/java/flat-view/flat-view-business-impl/src/main/resources/performanceAggregation.properties
+#change needed -
+#paggr.host=localhost
+#paggr.port=9090
+
+
+echo "*********************************************************"
+echo "Create local DB"
+echo "*********************************************************"
+#cd ~dev/search/kenshoo/java/db
+#./gradlew createNewDb genconf genDBProps genTestDBProps update liquidpackage -PdbPass=root56 -PdbUser=root -PdbName=kazaam -PdbHost=localhost -Pforce=true
 
 # Remove outdated versions from the cellar.
 brew cleanup
