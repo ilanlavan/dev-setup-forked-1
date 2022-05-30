@@ -40,7 +40,8 @@ echo "*********************************************************"
 echo "Installing java..."
 echo "*********************************************************"
 echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.bash_profile
-brew install java
+#fix java version to be 11
+brew --cask install java11
 
 # install tomcat
 echo "*********************************************************"
@@ -63,7 +64,8 @@ mkdir ~/etc
 echo $timezone > ~/etc/timezone
 
 
-## install docker
+## install docker -
+#todo : validate that m1 docker https://www.docker.com/products/docker-desktop/ is installed
 echo "*********************************************************"
 echo "Installing docker..."
 echo "*********************************************************"
@@ -78,9 +80,51 @@ echo "disable compose v2 on docker"
 echo "*********************************************************"
 echo "{\"composeV2\": \"disabled\"}" >> ~/.docker/features.json
 
-sed -i 's#"/Users",#"/Users","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
+echo "*********************************************************"
+echo "set a local container for the docker file sharing"
+echo "*********************************************************"
+sed -i.bak 's#"dev/search/kenshoo/java/docker/tomcat",#"dev/search/kenshoo/java/docker/tomcat","/kenshoo/java/docker/tomcat/KS-Logs",#g' ~/Library/Group\ Containers/group.com.docker/settings.json
 
 open /Applications/Docker.app
+
+#todo : authenticate via vault - needs verification
+
+
+#Configure vault
+echo "*********************************************************"
+echo "Installing hashicorp..."
+echo "*********************************************************"
+brew install hashicorp/tap/vault
+brew install jq
+
+PS3='Please enter your choice: '
+options=("vault-prod" "vault-staging" "quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "vault-prod")
+            echo "you chose $opt"
+            VAULT_URL="https://vault.internalk.com:8200/v1/auth/okta/login"
+            break
+            ;;
+        "vault-staging")
+            echo "you chose $opt"
+            VAULT_URL="https://vault-staging.internalk-stg.com:8200/v1/auth/okta/login"
+            break
+            ;;
+        "quit")
+            exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+USERNAME=$(whoami)
+read -sp "please enter password: " PASSWORD
+TOKEN=$(curl -s --request POST --data "{\"password\": \"${PASSWORD}\"}" "${VAULT_URL}"/"${USERNAME}" | jq -r .auth.client_token)
+echo -e "\nYour token is: $TOKEN"
+echo $TOKEN > ~/.vault-token
+perl -p -i -e 's/\R//g;' ~/.vault-token
 
 
 ## Jfrog logindocker - need to get credentials from init.gradle
@@ -106,16 +150,6 @@ echo "Installing git..."
 echo "*********************************************************"
 brew install git
 
-#add ssh key
-#https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-
-#Configure vault
-echo "*********************************************************"
-echo "Installing hashicorp..."
-echo "*********************************************************"
-#brew install hashicorp/tap/vault
-#cd ~
-#vault login -address="https://vault-staging.internalk-stg.com:8200" -method=okta username=$USER
 
 #Install volta
 echo "*********************************************************"
@@ -125,27 +159,29 @@ echo "*********************************************************"
 #export PATH=$VOLTA_HOME/bin:$PATH
 
 
+#add ssh key
+#https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
 echo "Generating SSH key..."
 echo "*************************************************************************************************************"
 echo "*************************************************************************************************************"
 echo "** press enter for all questions...                                                                        **"
 echo "**                                                                                                         **"
+
+#check how to remove the key name from the next line
+#todo : pbcopy to copy to clipboard the content of the id_rsa
 ssh-keygen -t rsa -b 2048 -C 'search@skai1111.io'
 echo "*************************************************************************************************************"
 echo "**Goto your github account and paste the following code under Settings-> SSH and GPG keys -> New SSH key...**"
+echo "**                                   https://github.com/settings/keys                                      **"
+echo "**           Once you are done authorize the key via the Authorize button under the new generated key      **"
+echo "*************************************************************************************************************"
 echo "*************************************************************************************************************"
 cat ~/.ssh/id_rsa.pub
 
-echo "*************************************************************************************************************"
 read -p "Press enter to continue"
-echo "*************************************************************************************************************"
-echo "**                                                                                                         **"
-echo "**      Now go to the same place and authorize the key you just generated, (Settings-> SSH and GPG keys)   **"
-echo "**                                   https://github.com/settings/keys                                      **"
-echo "**                                                                                                         **"
-echo "*************************************************************************************************************"
-echo ""
-read -p "Press enter to continue"
+
+#todo ask the user to print yes so he can use the key and add github to the list of authorized urls
 
 #Clone search
 echo "*********************************************************"
